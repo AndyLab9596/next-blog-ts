@@ -4,12 +4,17 @@ import ReactMarkdown from 'react-markdown';
 import { TPostWithContent } from '../../../types/post-types';
 import classes from './post-content.module.css';
 import PostHeader from './post-header';
-import { Prism as SyntaxHighlightner } from 'react-syntax-highlighter';
-import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { PrismLight as SyntaxHighlightner } from 'react-syntax-highlighter';
+import atomDark from 'react-syntax-highlighter/dist/cjs/styles/prism/atom-dark';
+import js from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
+import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css';
 
 interface IPostContentProps {
     post: TPostWithContent;
 }
+
+SyntaxHighlightner.registerLanguage('js', js);
+SyntaxHighlightner.registerLanguage('css', css);
 
 const PostContent: React.FC<IPostContentProps> = ({ post }) => {
     const { title, image, content, slug } = post;
